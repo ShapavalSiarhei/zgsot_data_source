@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: zgsotdatasource
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: abap-cloud-default_abap-trial-1bb2af26trial-dev
+          url: https://405e183a-28de-4d81-92fd-4d082cf16a3f.abap.us10.hana.ondemand.com
+          scp: true
+        app:
+          name: ZGSOT_DATA_SRC
+          package: z_ss_dev
+          transport: TRLK905652
+        exclude:
+          - /test/
